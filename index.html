@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second Rail</title>
+<meta name="description" content="Payments for the bold. Own your vault, route across your processors, switch the moment one drops you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff;
+  --marble:#f3f4f2;
+  --ink:#1c2024;
+  --stone:#6d737a;
+  --hair:#e3e5e3;
+  --moss:#2f8f5b;
+  --moss-soft:#dff3e6;
+  --font:"Geist",system-ui,-apple-system,sans-serif;
+  --gutter:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-weight:400;font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--moss);outline-offset:4px;border-radius:4px}
+
+h1,h2,h3{font-weight:500;letter-spacing:-0.03em;line-height:1.02;text-wrap:balance}
+h1{font-size:clamp(44px,6vw,92px);font-weight:400}
+h2{font-size:clamp(34px,4.6vw,64px)}
+h3{font-size:clamp(22px,2vw,26px);letter-spacing:-0.02em;line-height:1.2}
+.quiet{color:var(--stone)}
+.lede{font-size:clamp(18px,1.5vw,22px);line-height:1.45;max-width:30em}
+
+.shell{padding-left:var(--gutter);padding-right:var(--gutter)}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:22px var(--gutter);mix-blend-mode:multiply}
+.brand{display:flex;align-items:baseline;gap:14px;font-weight:500;font-size:17px;letter-spacing:-0.01em}
+.brand small{font-weight:400;color:var(--stone);font-size:15px}
+.btn{display:inline-flex;align-items:center;height:46px;padding:0 20px;border-radius:999px;background:var(--ink);color:#fff;font-size:15px;font-weight:500;transition:transform .2s ease,background .2s ease}
+.btn:hover{background:#000;transform:translateY(-1px)}
+.btn.light{background:#fff;color:var(--ink);border:1px solid var(--hair)}
+.btn.light:hover{background:var(--marble)}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,7fr);align-items:end;overflow:hidden}
+.hero-copy{order:2;padding:0 var(--gutter) clamp(48px,8vh,96px) clamp(24px,4vw,64px);position:relative;z-index:2;max-width:760px}
+.hero-copy h1{margin-bottom:28px}
+.hero-copy .line{display:block;overflow:hidden;padding:.06em 0 .22em;margin:-.06em 0 -.22em}
+.hero-copy .line>span{display:block;transform:translateY(110%);animation:rise 1.1s cubic-bezier(.2,.7,.1,1) forwards}
+.hero-copy .line:nth-child(2)>span{animation-delay:.1s}
+.hero-copy .line:nth-child(3)>span{animation-delay:.2s}
+.hero-copy p,.hero-copy .btn{opacity:0;animation:fade 1s ease .7s forwards}
+.nav{opacity:0;animation:fade 1s ease 1s forwards}
+@keyframes rise{to{transform:none}}
+@keyframes fade{to{opacity:1}}
+@keyframes enter{from{opacity:0;transform:scale(1.08) translateY(24px);filter:blur(14px)}to{opacity:1;transform:none;filter:blur(0)}}
+.hero-copy p{margin-bottom:36px}
+.hero-art{order:1;position:relative;height:100svh;overflow:hidden}
+.hero-art .plate{position:absolute;left:-10%;bottom:-4%;width:110%;will-change:transform}
+.hero-art img{width:100%;max-width:none;height:auto;mix-blend-mode:multiply;opacity:0;animation:enter 1.6s cubic-bezier(.2,.7,.1,1) .25s forwards;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 30%),linear-gradient(to left,transparent,#000 38%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent,#000 30%),linear-gradient(to left,transparent,#000 38%);mask-composite:intersect}
+.hero-art.mobile{display:none}
+
+/* statement */
+.statement{background:var(--marble);padding:clamp(120px,18vh,220px) var(--gutter);position:relative;overflow:hidden}
+.statement h2{max-width:14em;position:relative;z-index:1}
+.statement .ghost{position:absolute;left:38vw;top:50%;font-size:clamp(220px,34vw,520px);font-weight:500;letter-spacing:-0.06em;line-height:1;color:#fff;transform:translateY(-50%);user-select:none;pointer-events:none;will-change:transform}
+
+/* problems */
+.problems{padding:clamp(96px,14vh,160px) var(--gutter) 0}
+.problem{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,96px);padding:clamp(36px,5vh,56px) 0}
+.problem::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.7,.1,1)}
+.problem.in::before{transform:scaleX(1)}
+.problem h3{font-size:clamp(26px,2.8vw,38px);margin-bottom:16px;max-width:12em}
+.problem p{color:var(--stone);max-width:30em}
+.problem .how{color:var(--moss);font-weight:500;margin-bottom:16px}
+.problem>div:last-child{padding-top:clamp(0px,1vw,14px)}
+.keep{font-size:clamp(24px,2.6vw,36px);letter-spacing:-0.025em;line-height:1.2;color:var(--ink);max-width:22em;padding:clamp(48px,7vh,80px) 0 0}
+
+/* benefits */
+.benefits{padding:clamp(96px,14vh,160px) var(--gutter);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,64px)}
+.benefit{position:relative;padding-top:22px}
+.benefit::before,.steps li::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.7,.1,1)}
+.benefit.in::before,.steps li.in::before{transform:scaleX(1)}
+.benefit:nth-child(2)::before,.steps li:nth-child(2)::before{transition-delay:.15s}
+.benefit:nth-child(3)::before,.steps li:nth-child(3)::before{transition-delay:.3s}
+.benefit h3{margin-bottom:12px}
+.benefit p{color:var(--stone);max-width:24em}
+
+/* vault + swap */
+.vault{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(32px,6vw,96px);padding:clamp(64px,10vh,120px) var(--gutter)}
+.vault h2{margin-bottom:20px}
+.vault .lede{margin-bottom:36px}
+.scene{position:relative;width:100%;max-width:640px;aspect-ratio:1/1;margin-left:auto}
+.scene img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform;mix-blend-mode:multiply}
+.scene svg{position:absolute;inset:auto 0 0 0;width:100%;height:46%;overflow:visible}
+.scene text{font-family:var(--font);font-size:12px;fill:var(--stone)}
+.scene .box{transform-box:fill-box;transform-origin:center}
+.scene .box{fill:#fff;stroke:var(--hair);stroke-width:1.5}
+.scene .wire{fill:none;stroke:var(--moss);stroke-width:1.5;stroke-dasharray:3 6;animation:flow 1.4s linear infinite}
+.scene .pkt{fill:var(--moss);offset-rotate:0deg;opacity:0}
+.scene.live .pkt{animation:travel 2.4s linear infinite}
+.scene.live .pkt.b{animation-delay:-1.2s}
+.scene.live .pkt.lost{animation:travel 2.4s linear infinite,cutout 9s linear infinite}
+.scene.live .pkt.lost.b{animation-delay:-1.2s,0s}
+.scene.live .wire.lost{animation:flow 1.4s linear infinite,wireout 9s linear infinite}
+.scene.live .box.lost{animation:boxout 9s linear infinite}
+.scene.live .lost-label{animation:labelout 9s linear infinite}
+.scene.live .note{animation:notein 9s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-9}}
+@keyframes travel{0%{offset-distance:0%;opacity:0}8%{opacity:1}92%{opacity:1}100%{offset-distance:100%;opacity:0}}
+@keyframes cutout{0%,40%{visibility:visible}41%,100%{visibility:hidden}}
+@keyframes wireout{0%,40%{stroke:var(--moss);opacity:1}44%,100%{stroke:#c9ccc9;opacity:.5}}
+@keyframes boxout{0%,40%{stroke:var(--hair);transform:none}41%{transform:translateX(-3px)}42%{transform:translateX(3px)}43%{transform:translateX(-2px)}44%,100%{stroke:#c9ccc9;transform:none}}
+@keyframes labelout{0%,40%{fill:var(--stone)}44%,100%{fill:#b3b7b3;text-decoration:line-through}}
+@keyframes notein{0%,46%{opacity:0;transform:translateY(6px)}52%,96%{opacity:1;transform:none}100%{opacity:0}}
+
+/* steps (a real sequence) */
+.steps{background:var(--marble);padding:clamp(96px,14vh,160px) var(--gutter)}
+.steps h2{margin-bottom:clamp(48px,7vh,80px);max-width:12em}
+.steps ol{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,64px);counter-reset:step}
+.steps li{counter-increment:step;position:relative;padding-top:22px}
+.steps li::after{content:counter(step);display:block;font-size:15px;color:var(--stone);margin-bottom:28px;font-variant-numeric:tabular-nums;order:-1}
+.steps li{display:flex;flex-direction:column}
+.steps h3{margin-bottom:12px}
+.steps p{color:var(--stone);max-width:24em}
+
+/* who */
+.who{padding:clamp(96px,14vh,160px) var(--gutter);display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px)}
+.who ul{list-style:none;font-size:clamp(20px,2vw,28px);letter-spacing:-0.02em;line-height:1.25}
+.who li{padding:22px 0;border-top:1px solid var(--hair)}
+.who li:last-child{border-bottom:1px solid var(--hair)}
+
+/* close */
+.close{position:relative;min-height:80svh;display:grid;place-items:center;text-align:center;padding:clamp(96px,14vh,160px) var(--gutter);overflow:hidden}
+.close h2{margin-bottom:28px}
+.close .lede{margin:0 auto 40px}
+.close .glow{position:absolute;left:50%;bottom:-30%;width:70vw;height:70vw;max-width:900px;max-height:900px;border-radius:50%;background:radial-gradient(closest-side,var(--moss-soft),transparent 70%);transform:translateX(-50%);pointer-events:none;will-change:transform;animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{50%{scale:1.18}}
+.close>*{position:relative}
+
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:32px var(--gutter) 40px;border-top:1px solid var(--hair);color:var(--stone);font-size:15px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;align-items:start;min-height:auto}
+  .hero-copy{order:2;padding:32px var(--gutter) 64px;max-width:none}
+  .hero-art{display:none}
+  .hero-art.mobile{display:block;order:1;width:100%;height:72svh;min-width:0}
+  .hero-art.mobile img{position:static;width:100%;height:100%;object-fit:cover;object-position:center 30%;mix-blend-mode:multiply;animation-delay:0s}
+  .hero,.benefits,.steps ol,.vault,.who,.problem{grid-template-columns:minmax(0,1fr)}
+  .problem{gap:20px}
+  .hero>*,.benefits>*,.steps li,.vault>*,.who>*{min-width:0}
+  .scene{margin-left:0}
+  .statement .ghost{display:none}
+  .nav{padding:16px var(--gutter)}
+  .brand small{display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .scene .wire{animation:none}
+  [data-parallax],[data-parallax-x],[data-pointer]{transform:none !important}
+  .hero-copy .line>span,.hero-copy p,.hero-copy .btn,.hero-art img,.nav{animation:none;opacity:1;transform:none}
+  .scene .pkt,.close .glow{animation:none}
+  .benefit::before,.steps li::before,.problem::before{transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="brand" href="#top">Second Rail <small>Payments for the bold</small></a>
+  <a class="btn" href="#pilot">Book a pilot</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-copy">
+    <h1><span class="line"><span>For businesses</span></span><span class="line"><span>that play a</span></span><span class="line"><span>different game.</span></span></h1>
+    <p class="lede quiet">Own your vault. Route across every processor. Switch the moment one drops you.</p>
+    <a class="btn" href="#pilot">Book a pilot</a>
+  </div>
+  <div class="hero-art">
+    <div class="plate" data-parallax="0.18" data-pointer="1"><img src="img/knight-desktop.png" alt="A white marble chess knight stepping off a chessboard made of credit cards" fetchpriority="high"></div>
+  </div>
+  <div class="hero-art mobile">
+    <img src="img/knight-mobile.png" alt="A white marble chess knight stepping off a chessboard made of credit cards" fetchpriority="high">
+  </div>
+</header>
+
+<section class="statement">
+  <div class="ghost" data-parallax-x="-0.45" aria-hidden="true">Bold</div>
+  <h2 class="reveal">Your processor can leave.<br>Your customers shouldn't.</h2>
+</section>
+
+<section class="problems">
+  <div class="problem reveal">
+    <div><h3>Your processor owns your customers.</h3><p>Cards live in Stripe's, Shopify's or Whop's vault. When they drop you, every saved card goes with them. You re-ask your whole base and lose the renewals that never answer.</p></div>
+    <div><p class="how">How we solve it</p><p>Cards are tokenized once into a vault you own. Every processor receives a token, never the card. Switch providers and nothing is lost. Leave Second Rail and the vault leaves with you.</p></div>
+  </div>
+  <div class="problem reveal">
+    <div><h3>One account, one point of failure.</h3><p>All your volume runs through a single merchant account. A risk review, a chargeback spike or a policy change at one processor stops your entire revenue overnight.</p></div>
+    <div><p class="how">How we solve it</p><p>You connect several processors. We distribute volume across them by rules you set and keep every account healthy. When one terminates you, traffic moves to the others in minutes, not weeks.</p></div>
+  </div>
+  <div class="problem reveal">
+    <div><h3>Renewals fail and nobody knows why.</h3><p>Many subscription declines are recoverable, but your platform shows a red X and moves on. Expired cards, soft declines and issuer blocks all look the same.</p></div>
+    <div><p class="how">How we solve it</p><p>Every response code is captured and shown. Retries follow the decline reason, not a fixed schedule. Network tokens and account updater refresh expired cards before the next bill. You watch the decline rate fall, by reason, by processor.</p></div>
+  </div>
+  <p class="keep reveal">You keep your processors. You keep your money. You keep your customers.</p>
+</section>
+
+<section class="benefits shell">
+  <div class="benefit reveal">
+    <h3>Intelligent routing</h3>
+    <p>Every charge goes to the processor most likely to approve it. Rules you set, patterns we learn.</p>
+  </div>
+  <div class="benefit reveal">
+    <h3>Optimized for revenue</h3>
+    <p>Spread volume, lower fees, keep every account healthy. More of each sale reaches you.</p>
+  </div>
+  <div class="benefit reveal">
+    <h3>Fewer declines</h3>
+    <p>Retries by decline code, network tokens, account updater. Renewals that used to fail now clear.</p>
+  </div>
+</section>
+
+<section class="vault">
+  <div class="reveal">
+    <h2>Own your vault.<br>Switch in minutes.</h2>
+    <p class="lede quiet">Cards are tokenized once and stored under your control. When a processor terminates you, point traffic at the next one. No re-collection, no lost renewals.</p>
+    <a class="btn light" href="#how">See how it works</a>
+  </div>
+  <div class="scene" id="scene">
+    <img src="img/card-tokens.png" alt="" data-parallax="0.06">
+    <svg viewBox="0 0 600 260" aria-label="One vault token routed to four processors. One processor goes offline and traffic keeps flowing to the others.">
+      <rect class="box" x="20" y="100" width="130" height="60" rx="12"/>
+      <text x="85" y="126" text-anchor="middle" style="fill:var(--ink)">Your vault</text>
+      <text x="85" y="145" text-anchor="middle">tok_8f3a…c21</text>
+      <path class="wire" d="M150 130 C 300 130, 320 40, 450 40"/>
+      <path class="wire" d="M150 130 C 300 130, 320 100, 450 100"/>
+      <path class="wire lost" d="M150 130 C 300 130, 320 160, 450 160"/>
+      <path class="wire" d="M150 130 C 300 130, 320 220, 450 220"/>
+      <circle class="pkt" r="4" style="offset-path:path('M150 130 C 300 130, 320 40, 450 40')"/><circle class="pkt b" r="4" style="offset-path:path('M150 130 C 300 130, 320 40, 450 40')"/>
+      <circle class="pkt" r="4" style="offset-path:path('M150 130 C 300 130, 320 100, 450 100')"/><circle class="pkt b" r="4" style="offset-path:path('M150 130 C 300 130, 320 100, 450 100')"/>
+      <circle class="pkt lost" r="4" style="offset-path:path('M150 130 C 300 130, 320 160, 450 160')"/><circle class="pkt lost b" r="4" style="offset-path:path('M150 130 C 300 130, 320 160, 450 160')"/>
+      <circle class="pkt" r="4" style="offset-path:path('M150 130 C 300 130, 320 220, 450 220')"/><circle class="pkt b" r="4" style="offset-path:path('M150 130 C 300 130, 320 220, 450 220')"/>
+      <rect class="box" x="450" y="22" width="130" height="36" rx="10"/><text x="515" y="45" text-anchor="middle">Processor A</text>
+      <rect class="box" x="450" y="82" width="130" height="36" rx="10"/><text x="515" y="105" text-anchor="middle">Processor B</text>
+      <rect class="box lost" x="450" y="142" width="130" height="36" rx="10"/><text class="lost-label" x="515" y="165" text-anchor="middle">Processor C</text>
+      <rect class="box" x="450" y="202" width="130" height="36" rx="10"/><text x="515" y="225" text-anchor="middle">Processor D</text>
+      <text class="note" x="85" y="190" text-anchor="middle" style="fill:var(--moss)">Rerouted. Zero cards lost.</text>
+    </svg>
+  </div>
+</section>
+
+<section class="steps" id="how">
+  <h2 class="reveal">Three steps. Then it runs.</h2>
+  <ol>
+    <li class="reveal"><h3>Connect your processors</h3><p>Plug in the accounts you already have. Bring new ones from acquirers who work with your category.</p></li>
+    <li class="reveal"><h3>Move your vault</h3><p>Import existing cards where your current provider allows it. Tokenize new ones at checkout.</p></li>
+    <li class="reveal"><h3>Set rules, watch declines fall</h3><p>Smart retries and account updater keep renewals alive. A dashboard shows every reason a charge failed.</p></li>
+  </ol>
+</section>
+
+<section class="who">
+  <h2 class="reveal">Built for merchants the big platforms won't touch.</h2>
+  <ul>
+    <li class="reveal">Subscription businesses in sensitive categories</li>
+    <li class="reveal">Merchants dropped by a processor more than once</li>
+    <li class="reveal">Stores running several acquirers with no single view</li>
+    <li class="reveal">Teams losing renewals to declines they can't see</li>
+  </ul>
+</section>
+
+<section class="close" id="pilot">
+  <div class="glow" data-parallax="-0.1" aria-hidden="true"></div>
+  <div class="reveal">
+    <h2>Play a different game.</h2>
+    <p class="lede quiet">We are onboarding a small number of merchants for a hands-on pilot. Tell us about your stack and we'll show you what a switch would look like.</p>
+    <a class="btn" href="mailto:hello@secondrail.com?subject=Pilot">Book a pilot</a>
+  </div>
+</section>
+
+<footer>
+  <span>Second Rail, 2026</span>
+  <span>Not a merchant of record. You keep your accounts.</span>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: 0.2 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // diagram plays once when visible
+  const scene = document.getElementById('scene');
+  new IntersectionObserver((es, o) => es.forEach(e => {
+    if (e.isIntersecting) { scene.classList.add('live'); o.disconnect(); }
+  }), { threshold: 0.5 }).observe(scene);
+
+  // parallax: shift each layer by (distance from viewport center) * factor
+  if (reduce) return;
+  const layers = [...document.querySelectorAll('[data-parallax],[data-parallax-x]')]
+    .map(el => ({ el, fy: +(el.dataset.parallax || 0), fx: +(el.dataset.parallaxX || 0), pointer: 'pointer' in el.dataset }));
+  const copy = document.querySelector('.hero-copy');
+  const hero = document.querySelector('.hero');
+  // pointer tilt target/current, lerped each frame
+  const tgt = { x: 0, y: 0 }, cur = { x: 0, y: 0 };
+  hero.addEventListener('pointermove', e => {
+    if (matchMedia('(hover:none)').matches) return;
+    const r = hero.getBoundingClientRect();
+    tgt.x = ((e.clientX - r.left) / r.width - .5) * 28;
+    tgt.y = ((e.clientY - r.top) / r.height - .5) * 18;
+  });
+  hero.addEventListener('pointerleave', () => { tgt.x = 0; tgt.y = 0; });
+
+  const update = () => {
+    const vh = innerHeight;
+    cur.x += (tgt.x - cur.x) * .08; cur.y += (tgt.y - cur.y) * .08;
+    for (const { el, fy, fx, pointer } of layers) {
+      const r = el.parentElement.getBoundingClientRect();
+      if (r.bottom < -vh || r.top > vh * 2) continue;
+      const center = r.top + r.height / 2 - vh / 2;
+      const px = pointer ? cur.x : 0, py = pointer ? cur.y : 0;
+      el.style.transform = `translate3d(${(-center * fx + px).toFixed(1)}px, ${(-center * fy + py).toFixed(1)}px, 0)`;
+    }
+    // headline drifts up and fades as the hero leaves
+    const p = Math.min(1, Math.max(0, scrollY / (vh * .8)));
+    copy.style.opacity = (1 - p).toFixed(3);
+    copy.style.transform = `translate3d(0, ${(-p * 90).toFixed(1)}px, 0)`;
+    requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+})();
+</script>
+</body>
+</html>
